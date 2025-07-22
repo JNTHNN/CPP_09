@@ -9,7 +9,7 @@ OBJ_DIR		:=	.obj/
 DEP_DIR		:=	.dep/
 INC_DIR		:=	includes/
 
-SRC_FILES	:= main.cpp Bureaucrat.cpp
+SRC_FILES	:= main.cpp PmergeMe.cpp
 
 OBJ_FILES	:=	$(SRC_FILES:.cpp=.o)
 DEP_FILES	:=	$(OBJ_FILES:.o=.d)
@@ -21,11 +21,11 @@ DEP			:=	$(addprefix $(DEP_DIR), $(DEP_FILES))
 all: $(NAME)
 
 $(NAME): $(OBJ)
-        @echo CREATING BUREAUCRAT
+        @echo CREATING PMERGEME
         @$(CPP) $(CPPFLAGS) -o $(NAME) $(OBJ)
         @sleep 1
         @tput cuu1 dl1
-        @echo "BUREAUCRAT CREATED  " 
+        @echo "PMERGEME CREATED  " 
 
 
 $(OBJ_DIR)%.o:$(SRC_DIR)%.cpp
@@ -37,13 +37,13 @@ $(OBJ_DIR)%.o:$(SRC_DIR)%.cpp
 
 clean:
     @$(RM) -fr $(OBJ_DIR) $(DEP_DIR)
-    @echo BUREAUCRAT DESTROYED BYE !
+    @echo PMERGEME DESTROYED BYE !
     @sleep 1
     @tput cuu1 dl1
 
 fclean: clean
     @$(RM) $(NAME)
-    @echo BUREAUCRAT DESTROYED BYE !
+    @echo PMERGEME DESTROYED BYE !
     @sleep 1
     @tput cuu1 dl1
 
