@@ -21,31 +21,31 @@ DEP			:=	$(addprefix $(DEP_DIR), $(DEP_FILES))
 all: $(NAME)
 
 $(NAME): $(OBJ)
-        @echo CREATING RPN
-        @$(CPP) $(CPPFLAGS) -o $(NAME) $(OBJ)
-        @sleep 1
-        @tput cuu1 dl1
-        @echo "RPN CREATED  " 
+		@echo CREATING RPN
+		@$(CPP) $(CPPFLAGS) -o $(NAME) $(OBJ)
+		@sleep 1
+		@tput cuu1 dl1
+		@echo "RPN CREATED  " 
 
 
 $(OBJ_DIR)%.o:$(SRC_DIR)%.cpp
-    @mkdir -p $(OBJ_DIR) $(DEP_DIR)
-    @$(CPP) $(CPPFLAGS) -I $(INC_DIR) -o $@ -c $<
-    @mv $(OBJ_DIR)$*.d $(DEP_DIR)
+	@mkdir -p $(OBJ_DIR) $(DEP_DIR)
+	@$(CPP) $(CPPFLAGS) -I $(INC_DIR) -o $@ -c $<
+	@mv $(OBJ_DIR)$*.d $(DEP_DIR)
 
 -include $(DEP)
 
 clean:
-    @$(RM) -fr $(OBJ_DIR) $(DEP_DIR)
-    @echo RPN DESTROYED BYE !
-    @sleep 1
-    @tput cuu1 dl1
+	@$(RM) -fr $(OBJ_DIR) $(DEP_DIR)
+	@echo RPN DESTROYED BYE !
+	@sleep 1
+	@tput cuu1 dl1
 
 fclean: clean
-    @$(RM) $(NAME)
-    @echo RPN DESTROYED BYE !
-    @sleep 1
-    @tput cuu1 dl1
+	@$(RM) $(NAME)
+	@echo RPN DESTROYED BYE !
+	@sleep 1
+	@tput cuu1 dl1
 
 re: fclean all
 
