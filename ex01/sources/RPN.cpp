@@ -22,6 +22,20 @@ RPN&	RPN::operator=(const RPN& base)
 	return *this;
 }
 
+void	RPN::run(char** arr)
+{
+	int	i = 0;
+	while (arr[1][i])
+	{
+		if (isdigit(arr[1][i]))
+			stack(arr[1][i] - '0');
+		else if (isOperator(arr[1][i]))
+			destack(arr[1][i]);
+		i++;
+	}
+}
+
+
 void	RPN::stack(int a)
 {
 	_rpn.push(a);
@@ -30,7 +44,7 @@ void	RPN::stack(int a)
 void	RPN::destack(char c)
 {
 	if (_rpn.size() < 2)
-		std::cerr << "error: stack not enough fill" << std::endl;
+		throw Error();
 	else
 	{
 		int	b = _rpn.top();
@@ -72,5 +86,10 @@ void	RPN::print(void) const
 	if (_rpn.size() == 1)
 		std::cout << _rpn.top() << std::endl;
 	else
-		std::cerr << "error: stack more than one result" << std::endl;
+		throw Error();
+}
+
+const char*	RPN::Error::what() const throw()
+{
+	return "Error";
 }
