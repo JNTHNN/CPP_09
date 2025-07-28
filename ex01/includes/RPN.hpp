@@ -25,7 +25,8 @@ class   RPN
 
         class   Error: public std::exception
         {
-            const char* what() const throw();
+            public:
+                const char* what() const throw();
         };
 
 };

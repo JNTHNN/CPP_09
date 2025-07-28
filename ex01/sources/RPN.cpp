@@ -35,7 +35,6 @@ void	RPN::run(char** arr)
 	}
 }
 
-
 void	RPN::stack(int a)
 {
 	_rpn.push(a);

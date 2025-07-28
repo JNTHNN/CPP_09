@@ -8,8 +8,6 @@ static void	check_arg(int argc)
 
 int	main(int argc, char** argv)
 {
-	
-	
 	try
 	{
 		check_arg(argc);
