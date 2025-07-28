@@ -18,11 +18,27 @@ class   BitcoinExchange
         ~BitcoinExchange();
         BitcoinExchange& operator=(const BitcoinExchange& base);
 
+        void    check_arg(int arg); // ajouter le file par la suite
+
         void    setMap(std::string& date, std::string& value);
-        double  getExchange(std::string& date);
-        void    initDB(std::ifstream& db);
+        double  getExchange(const std::string& date);
+        void    initDB();
+
+        void    initInput(char* file);
+
+        void    getValue(BitcoinExchange& db);
 
         class FileMissing: public std::exception
+        {
+            public:
+                virtual const char* what() const throw();
+        };
+        class FileExtension: public std::exception
+        {
+            public:
+                virtual const char* what() const throw();
+        };
+        class NoValue: public std::exception
         {
             public:
                 virtual const char* what() const throw();
