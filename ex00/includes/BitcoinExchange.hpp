@@ -27,6 +27,7 @@ class   BitcoinExchange
         void    initInput(char* file);
 
         void    getValue(BitcoinExchange& db);
+        void    processInputFile(char* file, BitcoinExchange& db);
 
         class FileMissing: public std::exception
         {
@@ -43,6 +44,9 @@ class   BitcoinExchange
             public:
                 virtual const char* what() const throw();
         };
+        bool isValidDate(const std::string& date);
+        bool isValidValue(const std::string& value);
+        void processLine(const std::string& line, BitcoinExchange& db);
 };
 
 

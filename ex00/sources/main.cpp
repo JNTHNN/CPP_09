@@ -12,10 +12,10 @@ int main(int argc, char **argv)
         btc.initDB(); //parsing db
 
         BitcoinExchange input;
-        input.initInput(argv[1]);
+        // input.initInput(argv[1]);
 
+        btc.processInputFile(argv[1], btc);
         input.getValue(btc);
-        
     }
     catch(const std::exception& e)
     {
