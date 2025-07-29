@@ -5,6 +5,7 @@
 #include <algorithm>
 #include <fstream>
 #include <map>
+#include <iomanip>
 
 
 class   BitcoinExchange
@@ -27,9 +28,9 @@ class   BitcoinExchange
         void    initInput(char* file);
 
         void    getValue(BitcoinExchange& db);
-        void    processInputFile(char* file, BitcoinExchange& db);
+        void    exchange(char* file, BitcoinExchange& db);
 
-        class FileMissing: public std::exception
+        class ErrorFile: public std::exception
         {
             public:
                 virtual const char* what() const throw();
@@ -45,8 +46,9 @@ class   BitcoinExchange
                 virtual const char* what() const throw();
         };
         bool isValidDate(const std::string& date);
-        bool isValidValue(const std::string& value);
-        void processLine(const std::string& line, BitcoinExchange& db);
+        bool    isValidValue(const std::string& value);
+        bool    isBisexYear(int year);
+        void initInput(const std::string& line, BitcoinExchange& db);
 };
 
 
