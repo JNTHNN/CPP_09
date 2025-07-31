@@ -39,10 +39,13 @@ const char*	BitcoinExchange::NoValue::what(void) const throw()
 
 void	BitcoinExchange::setMap(std::string& date, std::string& value)
 {
-	if (value.empty()) // checker si la valeur est un digit/nombre
-		this->_map[date] = -1;
-	else
-		this->_map[date] = std::strtod(value.c_str(), NULL);
+    if (value.empty())
+        return; // Ne rien insérer si la valeur est vide
+    char* endptr;
+    double val = std::strtod(value.c_str(), &endptr);
+    if (*endptr != '\0' || val < 0)
+        return; // Ne rien insérer si la valeur n'est pas un nombre valide ou négative
+    this->_map[date] = val;
 }
 
 double  BitcoinExchange::getExchange(const std::string& date)
@@ -108,8 +111,10 @@ bool    BitcoinExchange::isValidDate(const std::string& date)
 		return std::cerr << "Error: bad date => " << date << std::endl, false;
 	if ((month == 2 && !isBisexYear(year) && (day < 1 || day > 28)) || (month == 2 && isBisexYear(year) && (day < 1 || day > 29)))
 		return std::cerr << "Error: bad date (february) => " << date << std::endl, false;
-	if ((day < 1 || day > 31))
-		return std::cerr << "Error: bad date => " << date << std::endl, false;
+	if ((month == 4 || month == 6 || month == 9 || month == 11) && (day < 1 || day > 30))
+		return std::cerr << "Error: bad date (30-day month) => " << date << std::endl, false;
+	if ((month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12) && (day < 1 || day > 31))
+		return std::cerr << "Error: bad date (31-day month) => " << date << std::endl, false;
 	return true;
 }
 
