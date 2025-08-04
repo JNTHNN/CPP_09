@@ -21,31 +21,31 @@ DEP			:=	$(addprefix $(DEP_DIR), $(DEP_FILES))
 all: $(NAME)
 
 $(NAME): $(OBJ)
-        @echo CREATING PMERGEME
-        @$(CPP) $(CPPFLAGS) -o $(NAME) $(OBJ)
-        @sleep 1
-        @tput cuu1 dl1
-        @echo "PMERGEME CREATED  " 
+		@echo CREATING PMERGEME
+		@$(CPP) $(CPPFLAGS) -o $(NAME) $(OBJ)
+		@sleep 1
+		@tput cuu1 dl1
+		@echo "PMERGEME CREATED  " 
 
 
 $(OBJ_DIR)%.o:$(SRC_DIR)%.cpp
-    @mkdir -p $(OBJ_DIR) $(DEP_DIR)
-    @$(CPP) $(CPPFLAGS) -I $(INC_DIR) -o $@ -c $<
-    @mv $(OBJ_DIR)$*.d $(DEP_DIR)
+	@mkdir -p $(OBJ_DIR) $(DEP_DIR)
+	@$(CPP) $(CPPFLAGS) -I $(INC_DIR) -o $@ -c $<
+	@mv $(OBJ_DIR)$*.d $(DEP_DIR)
 
 -include $(DEP)
 
 clean:
-    @$(RM) -fr $(OBJ_DIR) $(DEP_DIR)
-    @echo PMERGEME DESTROYED BYE !
-    @sleep 1
-    @tput cuu1 dl1
+	@$(RM) -fr $(OBJ_DIR) $(DEP_DIR)
+	@echo PMERGEME DESTROYED BYE !
+	@sleep 1
+	@tput cuu1 dl1
 
 fclean: clean
-    @$(RM) $(NAME)
-    @echo PMERGEME DESTROYED BYE !
-    @sleep 1
-    @tput cuu1 dl1
+	@$(RM) $(NAME)
+	@echo PMERGEME DESTROYED BYE !
+	@sleep 1
+	@tput cuu1 dl1
 
 re: fclean all
 
