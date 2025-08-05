@@ -31,3 +31,11 @@ int main(int argc, char** argv)
             Jn - 1 + 2Jn - 2 si n >= 2; 
         };
 */
+
+/* TO DO 
+Clock() start end pour la mesure du temps
+gestion de la arg avec un constructeur
+implementation du deque (remplacer vector par deque)
+gestion d'erreurs
+affichage
+*/
