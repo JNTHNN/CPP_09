@@ -25,10 +25,9 @@ class   PmergeMe
         void        swap(size_t i, size_t j);
         void        remove(int i);
 
-
         void        print() const;
-        void        pair();
-        // void        fordJohnson(PmergeMe& seq);
+
+        const char* what() const throw();
 };
 
 void                    mergeSort(std::vector<int>& v, int left, int right);
@@ -37,10 +36,6 @@ std::vector<size_t>     jacobsthal(size_t n);
 void                    fordJohnson(PmergeMe& seq);
 std::vector<int>        separate(PmergeMe& seq);
 void                    insertSort(std::vector<int>& main, std::vector<int>& pending);
-
-
-
-
-
+void                    pair(PmergeMe& seq);
 
 #endif

@@ -61,12 +61,3 @@ void   PmergeMe::print(void) const
 	for (size_t i = 0; i < _v.size(); ++i)
 		std::cout << _v[i] << " ";
 }
-
-void    PmergeMe::pair(void)
-{
-	for (size_t i = 0; i + 1 < _v.size(); i += 2)
-	{
-		if (_v[i] > _v[i + 1])
-			std::swap(_v[i], _v[i + 1]);
-	}
-}

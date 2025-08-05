@@ -30,7 +30,6 @@ void	mergeSort(std::vector<int>& v, int left, int right)
 	}
 }
 
-
 void	insertSort(std::vector<int>& main, std::vector<int>& pending)
 {
 	std::vector<size_t>	order = jacobsthal(pending.size());
