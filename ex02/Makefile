@@ -9,7 +9,7 @@ OBJ_DIR		:=	.obj/
 DEP_DIR		:=	.dep/
 INC_DIR		:=	includes/
 
-SRC_FILES	:= main.cpp PmergeMe.cpp
+SRC_FILES	:= main.cpp PmergeMe.cpp mergeInsertSort.cpp jacobsthal.cpp fordJohnson.cpp
 
 OBJ_FILES	:=	$(SRC_FILES:.cpp=.o)
 DEP_FILES	:=	$(OBJ_FILES:.o=.d)

@@ -18,11 +18,7 @@ int main(int argc, char** argv)
     vector.print();
     std::cout << std::endl;
 
-    vector.pairFormation();
-    std::cout << "Pair Formation: ";
-    vector.print();
-    std::cout << std::endl;
-
+    fordJohnson(vector);
 
     // return std::cerr << "Error" << std::endl, 1;
     return 0;
