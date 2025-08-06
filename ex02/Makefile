@@ -2,14 +2,14 @@
 NAME 		:= PmergeMe
 
 CPP 		:= c++
-CPPFLAGS	:= -Wall -Wextra -Werror -std=c++98 -MMD -fsanitize=address -g 
+CPPFLAGS	:= -Wall -Wextra -Werror -std=c++98 -MMD
 
 SRC_DIR		:=	sources/
 OBJ_DIR		:=	.obj/
 DEP_DIR		:=	.dep/
 INC_DIR		:=	includes/
 
-SRC_FILES	:= main.cpp PmergeMe.cpp mergeInsertSort.cpp jacobsthal.cpp fordJohnson.cpp
+SRC_FILES	:= main.cpp PmergeMe.cpp jacobsthal.cpp fordJohnson_vector.cpp fordJohnson_deque.cpp
 
 OBJ_FILES	:=	$(SRC_FILES:.cpp=.o)
 DEP_FILES	:=	$(OBJ_FILES:.o=.d)

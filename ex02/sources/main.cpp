@@ -1,41 +1,47 @@
 #include "../includes/PmergeMe.hpp"
 
-//  num entier positifs
+static void    print_time(std::string msg, clock_t start, clock_t end, PmergeMe* db)
+{
+    if (start && end)
+        std::cout << msg << double(end - start) * 1000.0 / CLOCKS_PER_SEC  << " ms"<< std::endl;
+    else
+        std::cout << msg;
+    if (db)
+        db->print();
+}
 
-// 1er message : Before:    lasequenced'entiersnontries
-// 2e message :  After:     lasequenced'entierstries
-// 3e message :  Time to process a range of "nombred'entiers" elements with std::vector : 0.00031 us
-// 4e message :  Time to process a range of "nombred'entiers" elements with std::deque : 0.00031 us
+static void    print_process(size_t elem, clock_t start, clock_t end, int v)
+{
+    std::cout << "Time to process a range of " << elem << " elements with std::";
+    if (v)
+       std::cout << "vector: ";
+    else
+       std::cout << "deque:  ";
+    std::cout << double(end - start) * 1000.0 / CLOCKS_PER_SEC  << " ms"<< std::endl;
+}
 
 int main(int argc, char** argv)
 {
-    (void)argv; //  en "" et sans
+    clock_t     global_start = clock();
+    PmergeMe    db(argc, argv);
+    if (db.isSorted())
+        return 0;
 
-    PmergeMe    vector;
-    for (int i = 1; i < argc; ++i)
-        vector.setVector(atoi(argv[i]));
-    std::cout << "Before: ";
-    vector.print();
-    std::cout << std::endl;
+    print_time("Before : ", 0, 0, &db);
+    clock_t     start_v = clock();
+    fordJohnson(db.getVector());
+    clock_t     end_v = clock();
 
-    fordJohnson(vector);
+    clock_t     start_d = clock();
+    fordJohnson(db.getDeque());
+    clock_t     end_d = clock();
 
-    // return std::cerr << "Error" << std::endl, 1;
+    print_time("After  : ", 0, 0, &db);
+    print_process(db.getVectorSize(), start_v, end_v, 1);
+    print_process(db.getDequeSize(), start_d, end_d, 0);
+
+    clock_t     global_end = clock();
+    print_time("Duration : ", global_start, global_end, NULL);
+
     return 0;
 }
-
-/*
-    Jacobsthal:
-    Jn = {  0    si n = 0;
-            1    si n = 1;
-            Jn - 1 + 2Jn - 2 si n >= 2; 
-        };
-*/
-
-/* TO DO 
-Clock() start end pour la mesure du temps
-gestion de la arg avec un constructeur
-implementation du deque (remplacer vector par deque)
-gestion d'erreurs
-affichage
-*/

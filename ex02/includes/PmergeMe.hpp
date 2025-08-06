@@ -2,40 +2,47 @@
 # define PMERGEME_HPP
 
 #include <iostream>
+#include <sstream>
 #include <algorithm>
 #include <vector>
+#include <deque>
+#include <climits>
+#include <ctime>
 
 class   PmergeMe
 {
     private:
     // utilisation de std::vector + std::deque
     std::vector<int>    _v;
+    std::deque<int>     _d;
 
     public:
         PmergeMe();
+        PmergeMe(int argc, char** argv);
         PmergeMe(const PmergeMe& copied);
         ~PmergeMe();
 
-        PmergeMe&   operator=(const PmergeMe& base);
+        PmergeMe&           operator=(const PmergeMe& base);
 
         std::vector<int>&   getVector();
-        PmergeMe    setVector(int a);
-        int         getVectorValue(size_t i);
-        size_t      vectorSize() const;
-        void        swap(size_t i, size_t j);
-        void        remove(int i);
+        std::deque<int>&    getDeque();
+        PmergeMe            setContainers(int a);
+        int                 getVectorValue(size_t i);
+        size_t              getVectorSize() const;
+        size_t              getDequeSize() const;
 
-        void        print() const;
+        void                print() const;
+        bool                isSorted() const;
 
-        const char* what() const throw();
+        class   Error: public std::exception
+        {
+            const char* what() const throw();
+        };
 };
 
-void                    mergeSort(std::vector<int>& v, int left, int right);
-void                    merge(std::vector<int>& v, int left, int mid, int right);
 std::vector<size_t>     jacobsthal(size_t n);
-void                    fordJohnson(PmergeMe& seq);
-std::vector<int>        separate(PmergeMe& seq);
-void                    insertSort(std::vector<int>& main, std::vector<int>& pending);
-void                    pair(PmergeMe& seq);
+std::deque<size_t>      jacobsthalD(size_t n);
+void                    fordJohnson(std::vector<int>& seq);
+void                    fordJohnson(std::deque<int>& seq);
 
 #endif
