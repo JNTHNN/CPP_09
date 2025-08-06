@@ -16,7 +16,7 @@ class   RPN
         RPN(const RPN& copied);
         ~RPN();
 
-        RPN& operator=(const RPN& base);
+        RPN&    operator=(const RPN& base);
 
         void    run(char** arr);
 		void	stack(int a);
@@ -30,8 +30,5 @@ class   RPN
         };
 
 };
-
-bool	isOperator(char c);
-
 
 #endif

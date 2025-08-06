@@ -22,6 +22,11 @@ RPN&	RPN::operator=(const RPN& base)
 	return *this;
 }
 
+static bool isOperator(char c)
+{
+    return (c == '+' || c == '-' || c == '*' || c == '/');
+}
+
 void	RPN::run(char** arr)
 {
 	int	i = 0;
@@ -73,11 +78,6 @@ void	RPN::destack(char c)
 		}
 	}
 
-}
-
-bool isOperator(char c)
-{
-    return (c == '+' || c == '-' || c == '*' || c == '/');
 }
 
 void	RPN::print(void) const

@@ -40,11 +40,11 @@ const char*	BitcoinExchange::NoValue::what(void) const throw()
 void	BitcoinExchange::setMap(std::string& date, std::string& value)
 {
     if (value.empty())
-        return; // Ne rien insérer si la valeur est vide
+        return;
     char* endptr;
     double val = std::strtod(value.c_str(), &endptr);
     if (*endptr != '\0' || val < 0)
-        return; // Ne rien insérer si la valeur n'est pas un nombre valide ou négative
+        return;
     this->_map[date] = val;
 }
 
@@ -173,7 +173,7 @@ void    BitcoinExchange::exchange(char* file, BitcoinExchange& db)
 		throw ErrorFile();
 	
 	std::string line;
-	std::getline(input, line); // Skip header line
+	std::getline(input, line);
 	while (std::getline(input, line))
 		initInput(line, db);
 }
