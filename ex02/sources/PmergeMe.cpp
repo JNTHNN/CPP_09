@@ -1,5 +1,15 @@
 #include "../includes/PmergeMe.hpp"
 
+static int	checkVal(std::string& nb)
+{
+	char* endptr = NULL;
+	long val = std::strtol(nb.c_str(), &endptr, 10);
+	if (*endptr != '\0' || val < INT_MIN || val > INT_MAX)
+		return -1;
+	else
+		return val;
+}
+
 PmergeMe::PmergeMe(void)
 {
 	return;
@@ -91,16 +101,6 @@ void   PmergeMe::print(void) const
 const char*	PmergeMe::Error::what(void) const throw()
 {
 	return "Error";
-}
-
-static int	checkVal(std::string& nb)
-{
-	char* endptr = NULL;
-	long val = std::strtol(nb.c_str(), &endptr, 10);
-	if (*endptr != '\0' || val < INT_MIN || val > INT_MAX)
-		return -1;
-	else
-		return val;
 }
 
 bool	PmergeMe::isSorted() const
