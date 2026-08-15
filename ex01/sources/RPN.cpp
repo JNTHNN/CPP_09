@@ -36,6 +36,8 @@ void	RPN::run(char** arr)
 			stack(arr[1][i] - '0');
 		else if (isOperator(arr[1][i]))
 			destack(arr[1][i]);
+		else if (arr[1][i] != ' ')
+			throw Error();
 		i++;
 	}
 }
@@ -66,10 +68,7 @@ void	RPN::destack(char c)
 				break;
 			case '/':
 				if (b == 0)
-				{
-					std::cerr << "Not a Number" << std::endl;
-					break;
-				}
+					throw Error();
 				_rpn.push(a / b);
 				break;
 			case '*':
